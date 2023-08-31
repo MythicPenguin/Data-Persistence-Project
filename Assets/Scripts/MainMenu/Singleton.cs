@@ -35,6 +35,7 @@ public class Singleton : MonoBehaviour
     class SaveData
     {
         public string bestScorePlayer;
+        public int highScore;
 
     }
 
@@ -42,6 +43,7 @@ public class Singleton : MonoBehaviour
     {
         SaveData data = new SaveData();
         data.bestScorePlayer = bestScorePlayer;
+        data.highScore = highScore;
 
         string json = JsonUtility.ToJson(data);
 
@@ -58,6 +60,7 @@ public class Singleton : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
             bestScorePlayer = data.bestScorePlayer;
+            highScore = data.highScore;
         }
     }
 }
