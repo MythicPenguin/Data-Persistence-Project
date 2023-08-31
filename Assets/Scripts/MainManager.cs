@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,6 +13,10 @@ public class MainManager : MonoBehaviour
 
     public Text ScoreText;
     public GameObject GameOverText;
+
+
+    public TextMeshProUGUI highScoreText;
+
     
     private bool m_Started = false;
     private int m_Points;
@@ -22,6 +27,10 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //HighScoreCheck();
+
+        highScoreText.text = Singleton.Instance.bestScorePlayer;
+
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -66,11 +75,47 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
+        
     }
 
     public void GameOver()
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+
+        Singleton.Instance.score = m_Points;
+
+        if(Singleton.Instance.score > Singleton.Instance.highScore)
+        {
+            highScoreText.text = "Top Score: " + Singleton.Instance.playerName + " = " + Singleton.Instance.score;
+            Singleton.Instance.bestScorePlayer = highScoreText.text;
+            Singleton.Instance.highScore = Singleton.Instance.score;
+        }
+        else
+        {
+            //highScoreText.text = "Top Score: " + Singleton.Instance.playerName + " = " + Singleton.Instance.highScore;
+            //Singleton.Instance.bestScorePlayer = highScoreText.text;
+        }
+
+
+
+
     }
+
+    //public void HighScoreCheck()
+    //{
+    //    if(m_Points > Singleton.Instance.highScore)
+    //    {
+    //        highScoreText.text = "Top Score: " + Singleton.Instance.playerName + " = " + m_Points;
+
+    //        Singleton.Instance.bestScorePlayer = highScoreText.text;
+    //    }
+    //    else
+    //    {
+    //        highScoreText.text = "Top Score: " + Singleton.Instance.playerName + " = " + Singleton.Instance.highScore;
+
+    //        //Singleton.Instance.bestScorePlayer = highScoreText.text;
+
+    //    }
+    //}
 }
