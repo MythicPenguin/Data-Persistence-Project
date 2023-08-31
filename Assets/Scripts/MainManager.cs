@@ -102,20 +102,4 @@ public class MainManager : MonoBehaviour
 
     }
 
-    //public void HighScoreCheck()
-    //{
-    //    if(m_Points > Singleton.Instance.highScore)
-    //    {
-    //        highScoreText.text = "Top Score: " + Singleton.Instance.playerName + " = " + m_Points;
-
-    //        Singleton.Instance.bestScorePlayer = highScoreText.text;
-    //    }
-    //    else
-    //    {
-    //        highScoreText.text = "Top Score: " + Singleton.Instance.playerName + " = " + Singleton.Instance.highScore;
-
-    //        //Singleton.Instance.bestScorePlayer = highScoreText.text;
-
-    //    }
-    //}
 }
